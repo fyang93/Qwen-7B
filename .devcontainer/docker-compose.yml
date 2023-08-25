@@ -1,0 +1,18 @@
+version: '3'
+services:
+  dev:
+    build:
+      context: .
+      args:
+        - USERNAME=yf
+        - USER_UID=1024
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    ipc: host
+    volumes:
+      - /home/yf/workspace:/home/yf/workspace
+    ports:
+      - 18080:8000
+    command: /bin/sh -c "while sleep 1000; do :; done"
